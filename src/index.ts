@@ -40,6 +40,53 @@ import { deleteEventTool } from './tools/deleteEvent.js';
 import { pinPostTool } from './tools/pinPost.js';
 import { listCommentsTool } from './tools/listComments.js';
 import { addCommentTool } from './tools/addComment.js';
+import { searchMembersTool } from './tools/searchMembers.js';
+import { listAdminsTool } from './tools/listAdmins.js';
+import { getLabSettingsTool } from './tools/getLabSettings.js';
+import { updateLabSettingsTool } from './tools/updateLabSettings.js';
+import { getStatsTool } from './tools/getStats.js';
+import { updatePostTool } from './tools/updatePost.js';
+import { deletePostTool } from './tools/deletePost.js';
+import { updateClassTool } from './tools/updateClass.js';
+import { banMemberTool } from './tools/banMember.js';
+import { unbanMemberTool } from './tools/unbanMember.js';
+import { promoteAdminTool } from './tools/promoteAdmin.js';
+import { demoteAdminTool } from './tools/demoteAdmin.js';
+import { createCategoryTool } from './tools/createCategory.js';
+import { updateCategoryTool } from './tools/updateCategory.js';
+import { deleteCategoryTool } from './tools/deleteCategory.js';
+import { updateEventTool } from './tools/updateEvent.js';
+import { listInvitationsTool } from './tools/listInvitations.js';
+import { sendInvitationTool } from './tools/sendInvitation.js';
+import { revokeInvitationTool } from './tools/revokeInvitation.js';
+import { listPluginsTool } from './tools/listPlugins.js';
+import { togglePluginTool } from './tools/togglePlugin.js';
+import { setMetaPixelTool } from './tools/setMetaPixel.js';
+import { setWelcomeDmTool } from './tools/setWelcomeDm.js';
+import { listLevelsTool } from './tools/listLevels.js';
+import { updateLevelTool } from './tools/updateLevel.js';
+import { listLabLinksTool } from './tools/listLabLinks.js';
+import { createLabLinkTool } from './tools/createLabLink.js';
+import { updateLabLinkTool } from './tools/updateLabLink.js';
+import { deleteLabLinkTool } from './tools/deleteLabLink.js';
+import { newsletterDashboardTool } from './tools/newsletterDashboard.js';
+import { listNewsletterEditionsTool } from './tools/listNewsletterEditions.js';
+import { createNewsletterEditionTool } from './tools/createNewsletterEdition.js';
+import { sendNewsletterEditionTool } from './tools/sendNewsletterEdition.js';
+import { listNewsletterSubscribersTool } from './tools/listNewsletterSubscribers.js';
+import { listPodcastShowsTool } from './tools/listPodcastShows.js';
+import { createPodcastShowTool } from './tools/createPodcastShow.js';
+import { listPodcastEpisodesTool } from './tools/listPodcastEpisodes.js';
+import { listPodcastSubscribersTool } from './tools/listPodcastSubscribers.js';
+import { updateSlugTool } from './tools/updateSlug.js';
+import { listChannelSubscribersTool } from './tools/listChannelSubscribers.js';
+import { createShopProductTool } from './tools/createShopProduct.js';
+import { updateShopProductTool } from './tools/updateShopProduct.js';
+import { deleteShopProductTool } from './tools/deleteShopProduct.js';
+import { createPodcastEpisodeTool } from './tools/createPodcastEpisode.js';
+import { updatePodcastEpisodeTool } from './tools/updatePodcastEpisode.js';
+import { publishPodcastEpisodeTool } from './tools/publishPodcastEpisode.js';
+import { unpublishPodcastEpisodeTool } from './tools/unpublishPodcastEpisode.js';
 
 const tools = [
     listLabsTool,
@@ -63,6 +110,53 @@ const tools = [
     pinPostTool,
     listCommentsTool,
     addCommentTool,
+    searchMembersTool,
+    listAdminsTool,
+    getLabSettingsTool,
+    updateLabSettingsTool,
+    getStatsTool,
+    updatePostTool,
+    deletePostTool,
+    updateClassTool,
+    banMemberTool,
+    unbanMemberTool,
+    promoteAdminTool,
+    demoteAdminTool,
+    createCategoryTool,
+    updateCategoryTool,
+    deleteCategoryTool,
+    updateEventTool,
+    listInvitationsTool,
+    sendInvitationTool,
+    revokeInvitationTool,
+    listPluginsTool,
+    togglePluginTool,
+    setMetaPixelTool,
+    setWelcomeDmTool,
+    listLevelsTool,
+    updateLevelTool,
+    listLabLinksTool,
+    createLabLinkTool,
+    updateLabLinkTool,
+    deleteLabLinkTool,
+    newsletterDashboardTool,
+    listNewsletterEditionsTool,
+    createNewsletterEditionTool,
+    sendNewsletterEditionTool,
+    listNewsletterSubscribersTool,
+    listPodcastShowsTool,
+    createPodcastShowTool,
+    listPodcastEpisodesTool,
+    listPodcastSubscribersTool,
+    updateSlugTool,
+    listChannelSubscribersTool,
+    createShopProductTool,
+    updateShopProductTool,
+    deleteShopProductTool,
+    createPodcastEpisodeTool,
+    updatePodcastEpisodeTool,
+    publishPodcastEpisodeTool,
+    unpublishPodcastEpisodeTool,
 ];
 
 const server = new Server(
