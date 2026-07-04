@@ -1,11 +1,17 @@
 {
-  "name": "@connectxlab/mcp-server",
-  "version": "0.1.0",
+  "name": "@connect-xlab/mcp-server",
+  "version": "0.1.1",
   "description": "Serveur MCP pour piloter ton Lab ConnectXLab depuis Claude Desktop / Cursor / n'importe quel client MCP.",
   "type": "module",
   "main": "dist/index.js",
   "bin": { "connectxlab-mcp": "dist/index.js" },
   "files": ["dist"],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Elmzelji/Xlab-Mcp.git"
+  },
+  "homepage": "https://github.com/Elmzelji/Xlab-Mcp#readme",
+  "bugs": { "url": "https://github.com/Elmzelji/Xlab-Mcp/issues" },
   "scripts": {
     "build": "tsc",
     "dev": "tsx watch src/index.ts",
