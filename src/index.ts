@@ -10,7 +10,7 @@
  *   XLAB_TIMEOUT_MS (defaut 15000)
  *
  * Distribution :
- *   npx -y @connectxlab/mcp-server  (via config Claude Desktop, env transmis)
+ *   npx -y @connect-xlab/mcp-server  (via config Claude Desktop, env transmis)
  */
 
 import { Server } from '@modelcontextprotocol/sdk/server/index.js';
@@ -87,6 +87,14 @@ import { createPodcastEpisodeTool } from './tools/createPodcastEpisode.js';
 import { updatePodcastEpisodeTool } from './tools/updatePodcastEpisode.js';
 import { publishPodcastEpisodeTool } from './tools/publishPodcastEpisode.js';
 import { unpublishPodcastEpisodeTool } from './tools/unpublishPodcastEpisode.js';
+import { getStripeConnectStatusTool } from './tools/getStripeConnectStatus.js';
+import { getLinkInBioTool } from './tools/getLinkInBio.js';
+import { updateLinkInBioTool } from './tools/updateLinkInBio.js';
+import { toggleLinkInBioPublishTool } from './tools/toggleLinkInBioPublish.js';
+import { createLinkInBioBlockTool } from './tools/createLinkInBioBlock.js';
+import { updateLinkInBioBlockTool } from './tools/updateLinkInBioBlock.js';
+import { deleteLinkInBioBlockTool } from './tools/deleteLinkInBioBlock.js';
+import { reorderLinkInBioBlocksTool } from './tools/reorderLinkInBioBlocks.js';
 
 const tools = [
     listLabsTool,
@@ -157,6 +165,16 @@ const tools = [
     updatePodcastEpisodeTool,
     publishPodcastEpisodeTool,
     unpublishPodcastEpisodeTool,
+    // Stripe Connect
+    getStripeConnectStatusTool,
+    // Link in Bio
+    getLinkInBioTool,
+    updateLinkInBioTool,
+    toggleLinkInBioPublishTool,
+    createLinkInBioBlockTool,
+    updateLinkInBioBlockTool,
+    deleteLinkInBioBlockTool,
+    reorderLinkInBioBlocksTool,
 ];
 
 const server = new Server(
