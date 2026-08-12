@@ -1,6 +1,6 @@
 {
   "name": "@connect-xlab/mcp-server",
-  "version": "0.1.2",
+  "version": "0.2.0",
   "description": "Serveur MCP pour piloter ton Lab ConnectXLab depuis Claude Desktop / Cursor / n'importe quel client MCP.",
   "type": "module",
   "main": "dist/index.js",
