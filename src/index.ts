@@ -95,6 +95,14 @@ import { createLinkInBioBlockTool } from './tools/createLinkInBioBlock.js';
 import { updateLinkInBioBlockTool } from './tools/updateLinkInBioBlock.js';
 import { deleteLinkInBioBlockTool } from './tools/deleteLinkInBioBlock.js';
 import { reorderLinkInBioBlocksTool } from './tools/reorderLinkInBioBlocks.js';
+import { listCompaniesTool } from './tools/listCompanies.js';
+import { createCompanyTool } from './tools/createCompany.js';
+import { updateCompanyTool } from './tools/updateCompany.js';
+import { deleteCompanyTool } from './tools/deleteCompany.js';
+import { listCompanyCategoriesTool } from './tools/listCompanyCategories.js';
+import { createCompanyCategoryTool } from './tools/createCompanyCategory.js';
+import { updateCompanyCategoryTool } from './tools/updateCompanyCategory.js';
+import { deleteCompanyCategoryTool } from './tools/deleteCompanyCategory.js';
 
 const tools = [
     listLabsTool,
@@ -175,6 +183,15 @@ const tools = [
     updateLinkInBioBlockTool,
     deleteLinkInBioBlockTool,
     reorderLinkInBioBlocksTool,
+    // Marketplace (societes + categories)
+    listCompaniesTool,
+    createCompanyTool,
+    updateCompanyTool,
+    deleteCompanyTool,
+    listCompanyCategoriesTool,
+    createCompanyCategoryTool,
+    updateCompanyCategoryTool,
+    deleteCompanyCategoryTool,
 ];
 
 const server = new Server(

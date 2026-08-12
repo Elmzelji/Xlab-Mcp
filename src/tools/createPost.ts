@@ -8,7 +8,7 @@ import { http, formatApiError } from '../http.js';
 
 export const createPostTool = {
     name: 'create_post',
-    description: "Cree un nouveau post dans un Lab. Le body peut etre du texte simple (sera wrappe en <p>) ou du HTML. Necessite un category_id valide — utilise list_categories pour l'obtenir.",
+    description: "Cree un nouveau post dans un Lab. Le body peut etre du texte simple (sera wrappe en <p>) ou du HTML. Necessite un category_id valide — utilise list_categories pour l'obtenir. Optionnel : shop_id pour mettre en avant un produit de la Boutique dans le post (CTA d'achat) — recupere l'id via list_shops.",
     inputSchema: {
         type: 'object' as const,
         properties: {
@@ -16,6 +16,7 @@ export const createPostTool = {
             title: { type: 'string', description: 'Titre du post (max 255 char)' },
             body: { type: 'string', description: 'Contenu du post — texte ou HTML' },
             category_id: { type: 'number', description: "Id d'une categorie du Lab (list_categories)" },
+            shop_id: { type: 'number', description: "Optionnel — id d'un produit Boutique a mettre en avant dans le post (list_shops). Doit appartenir a ce Lab." },
         },
         required: ['lab', 'title', 'body', 'category_id'],
         additionalProperties: false,
@@ -25,6 +26,7 @@ export const createPostTool = {
         title: z.string().min(1).max(255),
         body: z.string().min(1),
         category_id: z.number().int().positive(),
+        shop_id: z.number().int().positive().optional(),
     }),
     async handler(args: Record<string, unknown>) {
         const parsed = this.zodSchema.parse(args);
@@ -33,6 +35,7 @@ export const createPostTool = {
                 title: parsed.title,
                 body: parsed.body,
                 category_id: parsed.category_id,
+                ...(parsed.shop_id !== undefined ? { shop_id: parsed.shop_id } : {}),
             });
             return { content: [{ type: 'text' as const, text: JSON.stringify(data, null, 2) }] };
         } catch (err) {
