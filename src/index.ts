@@ -103,6 +103,14 @@ import { listCompanyCategoriesTool } from './tools/listCompanyCategories.js';
 import { createCompanyCategoryTool } from './tools/createCompanyCategory.js';
 import { updateCompanyCategoryTool } from './tools/updateCompanyCategory.js';
 import { deleteCompanyCategoryTool } from './tools/deleteCompanyCategory.js';
+import { listFunnelOffersTool } from './tools/listFunnelOffers.js';
+import { getFunnelTool } from './tools/getFunnel.js';
+import { createFunnelTool } from './tools/createFunnel.js';
+import { updateFunnelTool } from './tools/updateFunnel.js';
+import { deleteFunnelTool } from './tools/deleteFunnel.js';
+import { setFunnelItemTool } from './tools/setFunnelItem.js';
+import { deleteFunnelItemTool } from './tools/deleteFunnelItem.js';
+import { getFunnelStatsTool } from './tools/getFunnelStats.js';
 
 const tools = [
     listLabsTool,
@@ -192,6 +200,15 @@ const tools = [
     createCompanyCategoryTool,
     updateCompanyCategoryTool,
     deleteCompanyCategoryTool,
+    // Tunnels de vente (order bump / upsell / downsell)
+    listFunnelOffersTool,
+    getFunnelTool,
+    createFunnelTool,
+    updateFunnelTool,
+    deleteFunnelTool,
+    setFunnelItemTool,
+    deleteFunnelItemTool,
+    getFunnelStatsTool,
 ];
 
 const server = new Server(
