@@ -126,6 +126,16 @@ import { deleteSubscriptionPriceTool } from './tools/deleteSubscriptionPrice.js'
 import { updateTrialSettingsTool } from './tools/updateTrialSettings.js';
 import { listPixelRequestsTool } from './tools/listPixelRequests.js';
 import { managePixelRequestTool } from './tools/managePixelRequest.js';
+import { getNewsletterEditionTool } from './tools/getNewsletterEdition.js';
+import { updateNewsletterEditionTool } from './tools/updateNewsletterEdition.js';
+import { deleteNewsletterEditionTool } from './tools/deleteNewsletterEdition.js';
+import { scheduleNewsletterEditionTool } from './tools/scheduleNewsletterEdition.js';
+import { deleteNewsletterSubscriberTool } from './tools/deleteNewsletterSubscriber.js';
+import { getNewsletterSettingsTool } from './tools/getNewsletterSettings.js';
+import { updateNewsletterSettingsTool } from './tools/updateNewsletterSettings.js';
+import { getNewsletterRevenueTool } from './tools/getNewsletterRevenue.js';
+import { stopNewsletterTool } from './tools/stopNewsletter.js';
+import { reactivateNewsletterTool } from './tools/reactivateNewsletter.js';
 
 const tools = [
     listLabsTool,
@@ -241,6 +251,17 @@ const tools = [
     updateTrialSettingsTool,
     listPixelRequestsTool,
     managePixelRequestTool,
+    // Newsletter (complements : editions CRUD, abonnes, config)
+    getNewsletterEditionTool,
+    updateNewsletterEditionTool,
+    deleteNewsletterEditionTool,
+    scheduleNewsletterEditionTool,
+    deleteNewsletterSubscriberTool,
+    getNewsletterSettingsTool,
+    updateNewsletterSettingsTool,
+    getNewsletterRevenueTool,
+    stopNewsletterTool,
+    reactivateNewsletterTool,
 ];
 
 const server = new Server(
