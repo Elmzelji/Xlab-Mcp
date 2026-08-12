@@ -136,6 +136,25 @@ import { updateNewsletterSettingsTool } from './tools/updateNewsletterSettings.j
 import { getNewsletterRevenueTool } from './tools/getNewsletterRevenue.js';
 import { stopNewsletterTool } from './tools/stopNewsletter.js';
 import { reactivateNewsletterTool } from './tools/reactivateNewsletter.js';
+import { reorderClassTool } from './tools/reorderClass.js';
+import { getCalendarTool } from './tools/getCalendar.js';
+import { getCalendarPipelineTool } from './tools/getCalendarPipeline.js';
+import { updateCalendarTool } from './tools/updateCalendar.js';
+import { updateCalendarAvailabilityTool } from './tools/updateCalendarAvailability.js';
+import { addCalendarQuestionTool } from './tools/addCalendarQuestion.js';
+import { updateCalendarQuestionTool } from './tools/updateCalendarQuestion.js';
+import { deleteCalendarQuestionTool } from './tools/deleteCalendarQuestion.js';
+import { updateCalendarDisqualifRulesTool } from './tools/updateCalendarDisqualifRules.js';
+import { updateCalendarFollowupConfigTool } from './tools/updateCalendarFollowupConfig.js';
+import { getSmartJoinTool } from './tools/getSmartJoin.js';
+import { updateSmartJoinSettingsTool } from './tools/updateSmartJoinSettings.js';
+import { addSmartJoinQuestionTool } from './tools/addSmartJoinQuestion.js';
+import { updateSmartJoinQuestionTool } from './tools/updateSmartJoinQuestion.js';
+import { reorderSmartJoinQuestionsTool } from './tools/reorderSmartJoinQuestions.js';
+import { deleteSmartJoinQuestionTool } from './tools/deleteSmartJoinQuestion.js';
+import { duplicateSmartJoinQuestionTool } from './tools/duplicateSmartJoinQuestion.js';
+import { listSmartJoinResponsesTool } from './tools/listSmartJoinResponses.js';
+import { clearSmartJoinResponsesTool } from './tools/clearSmartJoinResponses.js';
 
 const tools = [
     listLabsTool,
@@ -262,6 +281,28 @@ const tools = [
     getNewsletterRevenueTool,
     stopNewsletterTool,
     reactivateNewsletterTool,
+    // Reorder cours
+    reorderClassTool,
+    // Calendrier IA (booking)
+    getCalendarTool,
+    getCalendarPipelineTool,
+    updateCalendarTool,
+    updateCalendarAvailabilityTool,
+    addCalendarQuestionTool,
+    updateCalendarQuestionTool,
+    deleteCalendarQuestionTool,
+    updateCalendarDisqualifRulesTool,
+    updateCalendarFollowupConfigTool,
+    // Smart Join (questions de qualification + reponses prospects)
+    getSmartJoinTool,
+    updateSmartJoinSettingsTool,
+    addSmartJoinQuestionTool,
+    updateSmartJoinQuestionTool,
+    reorderSmartJoinQuestionsTool,
+    deleteSmartJoinQuestionTool,
+    duplicateSmartJoinQuestionTool,
+    listSmartJoinResponsesTool,
+    clearSmartJoinResponsesTool,
 ];
 
 const server = new Server(
