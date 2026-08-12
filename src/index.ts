@@ -119,6 +119,13 @@ import { getLabAffiliationConfigTool } from './tools/getLabAffiliationConfig.js'
 import { updateLabAffiliationConfigTool } from './tools/updateLabAffiliationConfig.js';
 import { listLabAffiliatesTool } from './tools/listLabAffiliates.js';
 import { manageLabAffiliateTool } from './tools/manageLabAffiliate.js';
+import { getSubscriptionSettingsTool } from './tools/getSubscriptionSettings.js';
+import { addSubscriptionPriceTool } from './tools/addSubscriptionPrice.js';
+import { setCurrentSubscriptionPriceTool } from './tools/setCurrentSubscriptionPrice.js';
+import { deleteSubscriptionPriceTool } from './tools/deleteSubscriptionPrice.js';
+import { updateTrialSettingsTool } from './tools/updateTrialSettings.js';
+import { listPixelRequestsTool } from './tools/listPixelRequests.js';
+import { managePixelRequestTool } from './tools/managePixelRequest.js';
 
 const tools = [
     listLabsTool,
@@ -226,6 +233,14 @@ const tools = [
     updateLabAffiliationConfigTool,
     listLabAffiliatesTool,
     manageLabAffiliateTool,
+    // Abonnements (prix / essai / demandes pixel affilies)
+    getSubscriptionSettingsTool,
+    addSubscriptionPriceTool,
+    setCurrentSubscriptionPriceTool,
+    deleteSubscriptionPriceTool,
+    updateTrialSettingsTool,
+    listPixelRequestsTool,
+    managePixelRequestTool,
 ];
 
 const server = new Server(
