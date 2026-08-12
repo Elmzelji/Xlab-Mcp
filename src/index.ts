@@ -111,6 +111,14 @@ import { deleteFunnelTool } from './tools/deleteFunnel.js';
 import { setFunnelItemTool } from './tools/setFunnelItem.js';
 import { deleteFunnelItemTool } from './tools/deleteFunnelItem.js';
 import { getFunnelStatsTool } from './tools/getFunnelStats.js';
+import { getProductAffiliationConfigTool } from './tools/getProductAffiliationConfig.js';
+import { updateProductAffiliationConfigTool } from './tools/updateProductAffiliationConfig.js';
+import { listProductAffiliatesTool } from './tools/listProductAffiliates.js';
+import { manageProductAffiliateTool } from './tools/manageProductAffiliate.js';
+import { getLabAffiliationConfigTool } from './tools/getLabAffiliationConfig.js';
+import { updateLabAffiliationConfigTool } from './tools/updateLabAffiliationConfig.js';
+import { listLabAffiliatesTool } from './tools/listLabAffiliates.js';
+import { manageLabAffiliateTool } from './tools/manageLabAffiliate.js';
 
 const tools = [
     listLabsTool,
@@ -209,6 +217,15 @@ const tools = [
     setFunnelItemTool,
     deleteFunnelItemTool,
     getFunnelStatsTool,
+    // Affiliation (par-produit + lab-level)
+    getProductAffiliationConfigTool,
+    updateProductAffiliationConfigTool,
+    listProductAffiliatesTool,
+    manageProductAffiliateTool,
+    getLabAffiliationConfigTool,
+    updateLabAffiliationConfigTool,
+    listLabAffiliatesTool,
+    manageLabAffiliateTool,
 ];
 
 const server = new Server(
