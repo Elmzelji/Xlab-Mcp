@@ -103,6 +103,7 @@ import { listCompanyCategoriesTool } from './tools/listCompanyCategories.js';
 import { createCompanyCategoryTool } from './tools/createCompanyCategory.js';
 import { updateCompanyCategoryTool } from './tools/updateCompanyCategory.js';
 import { deleteCompanyCategoryTool } from './tools/deleteCompanyCategory.js';
+import { toggleCompanyVisibilityTool } from './tools/toggleCompanyVisibility.js';
 import { listFunnelOffersTool } from './tools/listFunnelOffers.js';
 import { getFunnelTool } from './tools/getFunnel.js';
 import { createFunnelTool } from './tools/createFunnel.js';
@@ -244,6 +245,7 @@ const tools = [
     createCompanyCategoryTool,
     updateCompanyCategoryTool,
     deleteCompanyCategoryTool,
+    toggleCompanyVisibilityTool,
     // Tunnels de vente (order bump / upsell / downsell)
     listFunnelOffersTool,
     getFunnelTool,

@@ -21,6 +21,7 @@ export const createCompanyTool = {
             text_cta: { type: 'string', maxLength: 255, description: 'Libelle du bouton CTA (optionnel)' },
             color: { type: 'string', description: 'Couleur de fond hex (optionnel, defaut #5A6BE3)' },
             company_category_id: { type: 'number', description: "Id d'une categorie Marketplace (list_company_categories)" },
+            is_published: { type: 'boolean', description: 'Optionnel : publiee (true, defaut) ou masquee/brouillon (false).' },
         },
         required: ['lab', 'name', 'website', 'description', 'short_description', 'cta_link', 'company_category_id'],
         additionalProperties: false,
@@ -35,6 +36,7 @@ export const createCompanyTool = {
         text_cta: z.string().max(255).optional(),
         color: z.string().max(20).optional(),
         company_category_id: z.number().int().positive(),
+        is_published: z.boolean().optional(),
     }),
     async handler(args: Record<string, unknown>) {
         const parsed = this.zodSchema.parse(args);

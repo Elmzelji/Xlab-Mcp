@@ -21,6 +21,7 @@ export const updateCompanyTool = {
             text_cta: { type: 'string', maxLength: 255 },
             color: { type: 'string' },
             company_category_id: { type: 'number', description: 'Nouvelle categorie (list_company_categories)' },
+            is_published: { type: 'boolean', description: 'Publiee (true) ou masquee/brouillon (false).' },
         },
         required: ['lab', 'uuid'],
         additionalProperties: false,
@@ -36,6 +37,7 @@ export const updateCompanyTool = {
         text_cta: z.string().max(255).nullable().optional(),
         color: z.string().max(20).optional(),
         company_category_id: z.number().int().positive().optional(),
+        is_published: z.boolean().optional(),
     }),
     async handler(args: Record<string, unknown>) {
         const parsed = this.zodSchema.parse(args);
