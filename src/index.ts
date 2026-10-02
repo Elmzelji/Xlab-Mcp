@@ -156,6 +156,52 @@ import { deleteSmartJoinQuestionTool } from './tools/deleteSmartJoinQuestion.js'
 import { duplicateSmartJoinQuestionTool } from './tools/duplicateSmartJoinQuestion.js';
 import { listSmartJoinResponsesTool } from './tools/listSmartJoinResponses.js';
 import { clearSmartJoinResponsesTool } from './tools/clearSmartJoinResponses.js';
+import { getLinkInBioCatalogTool } from './tools/getLinkInBioCatalog.js';
+import { getQuizSettingsTool } from './tools/getQuizSettings.js';
+import { updateQuizSettingsTool } from './tools/updateQuizSettings.js';
+import { listQuizTemplatesTool } from './tools/listQuizTemplates.js';
+import { listQuizzesTool } from './tools/listQuizzes.js';
+import { createQuizTool } from './tools/createQuiz.js';
+import { getQuizTool } from './tools/getQuiz.js';
+import { updateQuizTool } from './tools/updateQuiz.js';
+import { deleteQuizTool } from './tools/deleteQuiz.js';
+import { setQuizPublishedTool } from './tools/setQuizPublished.js';
+import { createQuizItemTool } from './tools/createQuizItem.js';
+import { updateQuizItemTool } from './tools/updateQuizItem.js';
+import { deleteQuizItemTool } from './tools/deleteQuizItem.js';
+import { reorderQuizItemsTool } from './tools/reorderQuizItems.js';
+import { createQuizAnswerTool } from './tools/createQuizAnswer.js';
+import { updateQuizAnswerTool } from './tools/updateQuizAnswer.js';
+import { deleteQuizAnswerTool } from './tools/deleteQuizAnswer.js';
+import { createQuizProfileTool } from './tools/createQuizProfile.js';
+import { updateQuizProfileTool } from './tools/updateQuizProfile.js';
+import { deleteQuizProfileTool } from './tools/deleteQuizProfile.js';
+import { listQuizLeadsTool } from './tools/listQuizLeads.js';
+import { getQuizLeadTool } from './tools/getQuizLead.js';
+import { getQuizStatsTool } from './tools/getQuizStats.js';
+import { getDmSequenceSettingsTool } from './tools/getDmSequenceSettings.js';
+import { updateDmSequenceSettingsTool } from './tools/updateDmSequenceSettings.js';
+import { listDmSequenceTargetPostsTool } from './tools/listDmSequenceTargetPosts.js';
+import { listDmSequencesTool } from './tools/listDmSequences.js';
+import { createDmSequenceTool } from './tools/createDmSequence.js';
+import { getDmSequenceTool } from './tools/getDmSequence.js';
+import { updateDmSequenceTool } from './tools/updateDmSequence.js';
+import { setDmSequenceStatusTool } from './tools/setDmSequenceStatus.js';
+import { previewDmSequenceTool } from './tools/previewDmSequence.js';
+import { getDmSequenceStatsTool } from './tools/getDmSequenceStats.js';
+import { listDmEnrollmentsTool } from './tools/listDmEnrollments.js';
+import { manageDmEnrollmentTool } from './tools/manageDmEnrollment.js';
+import { getAssistantSettingsTool } from './tools/getAssistantSettings.js';
+import { updateAssistantSettingsTool } from './tools/updateAssistantSettings.js';
+import { getAssistantProductsTool } from './tools/getAssistantProducts.js';
+import { updateAssistantProductsTool } from './tools/updateAssistantProducts.js';
+import { listAssistantActionsTool } from './tools/listAssistantActions.js';
+import { getAssistantActionTool } from './tools/getAssistantAction.js';
+import { approveAssistantActionTool } from './tools/approveAssistantAction.js';
+import { rejectAssistantActionTool } from './tools/rejectAssistantAction.js';
+import { correctAssistantActionTool } from './tools/correctAssistantAction.js';
+import { requestAssistantPostDraftTool } from './tools/requestAssistantPostDraft.js';
+import { getAssistantSummaryTool } from './tools/getAssistantSummary.js';
 
 const tools = [
     listLabsTool,
@@ -236,6 +282,7 @@ const tools = [
     updateLinkInBioBlockTool,
     deleteLinkInBioBlockTool,
     reorderLinkInBioBlocksTool,
+    getLinkInBioCatalogTool,
     // Marketplace (societes + categories)
     listCompaniesTool,
     createCompanyTool,
@@ -305,6 +352,54 @@ const tools = [
     duplicateSmartJoinQuestionTool,
     listSmartJoinResponsesTool,
     clearSmartJoinResponsesTool,
+    // Quiz (capture + qualification de prospects)
+    getQuizSettingsTool,
+    updateQuizSettingsTool,
+    listQuizTemplatesTool,
+    listQuizzesTool,
+    createQuizTool,
+    getQuizTool,
+    updateQuizTool,
+    deleteQuizTool,
+    setQuizPublishedTool,
+    createQuizItemTool,
+    updateQuizItemTool,
+    deleteQuizItemTool,
+    reorderQuizItemsTool,
+    createQuizAnswerTool,
+    updateQuizAnswerTool,
+    deleteQuizAnswerTool,
+    createQuizProfileTool,
+    updateQuizProfileTool,
+    deleteQuizProfileTool,
+    listQuizLeadsTool,
+    getQuizLeadTool,
+    getQuizStatsTool,
+    // Sequences DM (DM programmes aux membres)
+    getDmSequenceSettingsTool,
+    updateDmSequenceSettingsTool,
+    listDmSequenceTargetPostsTool,
+    listDmSequencesTool,
+    createDmSequenceTool,
+    getDmSequenceTool,
+    updateDmSequenceTool,
+    setDmSequenceStatusTool,
+    previewDmSequenceTool,
+    getDmSequenceStatsTool,
+    listDmEnrollmentsTool,
+    manageDmEnrollmentTool,
+    // Lou (assistant IA de l'owner)
+    getAssistantSettingsTool,
+    updateAssistantSettingsTool,
+    getAssistantProductsTool,
+    updateAssistantProductsTool,
+    listAssistantActionsTool,
+    getAssistantActionTool,
+    approveAssistantActionTool,
+    rejectAssistantActionTool,
+    correctAssistantActionTool,
+    requestAssistantPostDraftTool,
+    getAssistantSummaryTool,
 ];
 
 const server = new Server(
