@@ -8,7 +8,7 @@ import { http, formatApiError } from '../http.js';
 
 export const updateDmSequenceTool = {
     name: 'update_dm_sequence',
-    description: "Modifie le BROUILLON d'une sequence (la version en ligne ne change qu'a la publication). trigger (keyword : post_ids de list_dm_sequence_target_posts + keywords, max 10) ; goal (objectif qui arrete la sequence : reply, first_comment, lesson_completed + module_id, none ; window_days 1-90) ; config (link_url, group_shop_id) ; steps remplace toute la liste (max 8 messages : delay_seconds depuis le message precedent + body_template). Variables utilisables dans body_template : {{prenom}}, {{lab}}, {{lien}}. revision facultative.",
+    description: "Modifie le BROUILLON d'une sequence (la version en ligne ne change qu'a la publication). trigger (keyword : post_ids de list_dm_sequence_target_posts + keywords, max 10) ; goal (objectif qui arrete la sequence : reply, first_comment, lesson_completed + module_id, none ; window_days 1-90) ; config (link_url, group_shop_id) ; steps remplace toute la liste (max 8 messages : delay_seconds depuis le message precedent + body_template). Variables utilisables dans body_template : {{prenom}}, {{lab}}, {{lien}} (config.link_url), {{app}} (lien d'installation de l'app mobile, aux couleurs du Lab). revision facultative.",
     inputSchema: {
         type: 'object' as const,
         properties: {
