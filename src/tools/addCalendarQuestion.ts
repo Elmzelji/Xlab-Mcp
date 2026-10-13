@@ -7,11 +7,12 @@ import { http, formatApiError } from '../http.js';
 
 export const addCalendarQuestionTool = {
     name: 'add_calendar_question',
-    description: "Ajoute une question de qualification au Calendrier IA. question_type = text (reponse libre) ou qcm (choix multiple — options requises, min 2). icon et required optionnels.",
+    description: "Ajoute une question de qualification au Calendrier IA. question_type = text (reponse libre) ou qcm (choix multiple — options requises, min 2). icon et required optionnels. Un Lab peut avoir plusieurs calendriers : event_id (via list_calendars) cible l'un d'eux, sinon le premier du Lab.",
     inputSchema: {
         type: 'object' as const,
         properties: {
             lab: { type: 'string' },
+            event_id: { type: 'number', minimum: 1, description: 'Calendrier vise (list_calendars). Defaut : le premier du Lab.' },
             label: { type: 'string', maxLength: 500 },
             question_type: { type: 'string', enum: ['text', 'qcm'] },
             icon: { type: 'string', maxLength: 40 },
@@ -23,6 +24,7 @@ export const addCalendarQuestionTool = {
     },
     zodSchema: z.object({
         lab: z.string(),
+        event_id: z.number().int().positive().optional(),
         label: z.string().min(1).max(500),
         question_type: z.enum(['text', 'qcm']),
         icon: z.string().max(40).nullable().optional(),

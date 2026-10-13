@@ -5,6 +5,8 @@
  *  - kind=lab       : autre Lab de l'owner (lab_group_id)
  *  - kind=quiz      : quiz du Lab (quiz_id) — l'URL publique /quiz/{public_key}
  *                     est resolue cote API, jamais par le client.
+ *  - kind=calendar  : calendrier du Lab (calendar_event_id) — la reservation
+ *                     s'ouvre en fenetre sur la page publique.
  *
  * Les ids se trouvent via get_link_in_bio_catalog. Position ajoutee
  * automatiquement en fin de liste.
@@ -14,16 +16,17 @@ import { z } from 'zod';
 import { http, formatApiError } from '../http.js';
 
 const SELLABLE_TYPES = ['agent_ai', 'group_shop', 'newsletter', 'podcast_show', 'lab_channel'] as const;
-const KINDS = ['external', 'product', 'lab', 'quiz'] as const;
+const KINDS = ['external', 'product', 'lab', 'quiz', 'calendar'] as const;
 
 export const createLinkInBioBlockTool = {
     name: 'create_link_in_bio_block',
     description:
-        "Ajoute un bloc a la page Link in Bio (title requis). Quatre types :\n" +
+        "Ajoute un bloc a la page Link in Bio (title requis). Cinq types :\n" +
         "- kind=external : lien URL libre (url requis)\n" +
         "- kind=product : offre du Lab (sellable_type + sellable_id requis, sellable_type dans agent_ai/group_shop/newsletter/podcast_show/lab_channel)\n" +
         "- kind=lab : autre Lab de l'owner (lab_group_id requis)\n" +
         "- kind=quiz : quiz du Lab (quiz_id requis). Le bloc reste masque sur la page publique tant que le quiz n'est pas publie et le plug-in Quiz active.\n" +
+        "- kind=calendar : calendrier du Lab (calendar_event_id requis, ids via get_link_in_bio_catalog ou list_calendars). La reservation s'ouvre en fenetre sur la page publique. Masque si le calendrier est inactif ; un calendrier payant doit etre vendu dans une boutique Stripe active.\n" +
         "Les ids se trouvent via get_link_in_bio_catalog. Champs optionnels : subtitle, image_url. Position en fin de liste (utiliser reorder pour changer).",
     inputSchema: {
         type: 'object' as const,
@@ -38,6 +41,7 @@ export const createLinkInBioBlockTool = {
             sellable_id: { type: 'number', minimum: 1 },
             lab_group_id: { type: 'number', minimum: 1, description: "kind=lab : id d'un autre Lab de l'owner" },
             quiz_id: { type: 'number', minimum: 1, description: 'kind=quiz : id du quiz' },
+            calendar_event_id: { type: 'number', minimum: 1, description: 'kind=calendar : id du calendrier' },
         },
         required: ['lab', 'kind', 'title'],
         additionalProperties: false,
@@ -53,6 +57,7 @@ export const createLinkInBioBlockTool = {
         sellable_id: z.number().int().positive().optional(),
         lab_group_id: z.number().int().positive().optional(),
         quiz_id: z.number().int().positive().optional(),
+        calendar_event_id: z.number().int().positive().optional(),
     }),
     async handler(args: Record<string, unknown>) {
         const parsed = this.zodSchema.parse(args);

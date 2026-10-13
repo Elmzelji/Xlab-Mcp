@@ -138,6 +138,7 @@ import { getNewsletterRevenueTool } from './tools/getNewsletterRevenue.js';
 import { stopNewsletterTool } from './tools/stopNewsletter.js';
 import { reactivateNewsletterTool } from './tools/reactivateNewsletter.js';
 import { reorderClassTool } from './tools/reorderClass.js';
+import { listCalendarsTool } from './tools/listCalendars.js';
 import { getCalendarTool } from './tools/getCalendar.js';
 import { getCalendarPipelineTool } from './tools/getCalendarPipeline.js';
 import { updateCalendarTool } from './tools/updateCalendar.js';
@@ -333,6 +334,7 @@ const tools = [
     // Reorder cours
     reorderClassTool,
     // Calendrier IA (booking)
+    listCalendarsTool,
     getCalendarTool,
     getCalendarPipelineTool,
     updateCalendarTool,

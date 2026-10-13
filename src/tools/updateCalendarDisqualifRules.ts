@@ -7,11 +7,12 @@ import { http, formatApiError } from '../http.js';
 
 export const updateCalendarDisqualifRulesTool = {
     name: 'update_calendar_disqualif_rules',
-    description: "Remplace les regles de disqualification automatique des leads du Calendrier IA. rules est le jeu complet de regles : condition_type = phone_country (indicatif telephonique) ou question_answer (reponse a une question, question_id requis), disqualifying_values = valeurs qui disqualifient. Envoyer un tableau vide efface toutes les regles.",
+    description: "Remplace les regles de disqualification automatique des leads du Calendrier IA. rules est le jeu complet de regles : condition_type = phone_country (indicatif telephonique) ou question_answer (reponse a une question, question_id requis), disqualifying_values = valeurs qui disqualifient. Envoyer un tableau vide efface toutes les regles. Un Lab peut avoir plusieurs calendriers : event_id (via list_calendars) cible l'un d'eux, sinon le premier du Lab.",
     inputSchema: {
         type: 'object' as const,
         properties: {
             lab: { type: 'string' },
+            event_id: { type: 'number', minimum: 1, description: 'Calendrier vise (list_calendars). Defaut : le premier du Lab.' },
             rules: {
                 type: 'array',
                 items: {
@@ -31,6 +32,7 @@ export const updateCalendarDisqualifRulesTool = {
     },
     zodSchema: z.object({
         lab: z.string(),
+        event_id: z.number().int().positive().optional(),
         rules: z.array(z.object({
             condition_type: z.enum(['phone_country', 'question_answer']),
             question_id: z.number().int().positive().nullable().optional(),
@@ -40,7 +42,7 @@ export const updateCalendarDisqualifRulesTool = {
     async handler(args: Record<string, unknown>) {
         const p = this.zodSchema.parse(args);
         try {
-            const { data } = await http.put(`/mcp/labs/${encodeURIComponent(p.lab)}/calendar/disqualif-rules`, { rules: p.rules });
+            const { data } = await http.put(`/mcp/labs/${encodeURIComponent(p.lab)}/calendar/disqualif-rules`, { rules: p.rules, event_id: p.event_id });
             return { content: [{ type: 'text' as const, text: JSON.stringify(data, null, 2) }] };
         } catch (err) {
             return { isError: true, content: [{ type: 'text' as const, text: formatApiError(err) }] };

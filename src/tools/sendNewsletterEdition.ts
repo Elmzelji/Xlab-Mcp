@@ -3,7 +3,7 @@ import { http, formatApiError } from '../http.js';
 
 export const sendNewsletterEditionTool = {
     name: 'send_newsletter_edition',
-    description: "Marque une edition draft comme envoyee. NOTE : cet appel MCP flag l'edition en 'sent' — l'envoi email reel se fait via l'endpoint xlab standard. Demander confirmation.",
+    description: "Envoie maintenant une edition (brouillon ou programmee) a tous les abonnes de la newsletter, par email. Action irreversible : demander confirmation avant.",
     inputSchema: {
         type: 'object' as const,
         properties: { lab: { type: 'string' }, edition_id: { type: 'number' } },

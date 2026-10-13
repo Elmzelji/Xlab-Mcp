@@ -8,7 +8,7 @@ import { http, formatApiError } from '../http.js';
 
 export const getLinkInBioCatalogTool = {
     name: 'get_link_in_bio_catalog',
-    description: "Liste les ids utilisables dans les blocs Link in Bio : products (type + id pour kind=product), labs (id pour kind=lab = autres Labs de l'owner), quizzes (id + published pour kind=quiz) et quiz_plugin_enabled. Un bloc quiz n'apparait sur la page publique que si le quiz est publie ET le plug-in Quiz active.",
+    description: "Liste les ids utilisables dans les blocs Link in Bio : products (type + id pour kind=product), labs (id pour kind=lab = autres Labs de l'owner), quizzes (id + published pour kind=quiz), calendars (id + paid/active/sold pour kind=calendar) et quiz_plugin_enabled. Un bloc quiz n'apparait sur la page publique que si le quiz est publie ET le plug-in Quiz active.",
     inputSchema: {
         type: 'object' as const,
         properties: {

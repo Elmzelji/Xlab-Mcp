@@ -8,11 +8,12 @@ import { http, formatApiError } from '../http.js';
 
 export const updateCalendarTool = {
     name: 'update_calendar',
-    description: "Met a jour la config du Calendrier IA. N'envoie que ce que tu veux changer. Les fenetres horaires hot/warm par jour (scoring) restent gerees via le front.",
+    description: "Met a jour la config du Calendrier IA. N'envoie que ce que tu veux changer. Les fenetres horaires hot/warm par jour (scoring) restent gerees via le front. Un Lab peut avoir plusieurs calendriers : event_id (via list_calendars) cible l'un d'eux, sinon le premier du Lab.",
     inputSchema: {
         type: 'object' as const,
         properties: {
             lab: { type: 'string' },
+            event_id: { type: 'number', minimum: 1, description: 'Calendrier vise (list_calendars). Defaut : le premier du Lab.' },
             name: { type: 'string', maxLength: 200 },
             location_type: { type: 'string', enum: ['google_meet', 'zoom', 'phone', 'in_person'] },
             description: { type: 'string' },
@@ -38,6 +39,7 @@ export const updateCalendarTool = {
     },
     zodSchema: z.object({
         lab: z.string(),
+        event_id: z.number().int().positive().optional(),
         name: z.string().max(200).optional(),
         location_type: z.enum(['google_meet', 'zoom', 'phone', 'in_person']).optional(),
         description: z.string().nullable().optional(),
