@@ -10,7 +10,7 @@ import { http, formatApiError } from '../http.js';
 export const updateLinkInBioBlockTool = {
     name: 'update_link_in_bio_block',
     description:
-        "Modifie un bloc existant (identifie par block_id, entier renvoye par get_link_in_bio ou create_link_in_bio_block). Seuls les champs fournis changent : title, subtitle, url (bloc externe), image_url, quiz_id (bloc quiz), calendar_event_id (bloc calendrier), lab_group_id (bloc Lab), is_active (afficher/masquer sans supprimer). Le type (kind) d'un bloc ne change pas.",
+        "Modifie un bloc existant (identifie par block_id, entier renvoye par get_link_in_bio ou create_link_in_bio_block). Seuls les champs fournis changent : title, subtitle, url (bloc externe), image_url, layout (forme du bloc : classic = petite image + bouton a droite, par defaut ; image = texte et bouton a contour a gauche, grande image a droite ; button = image + titre en haut, gros bouton pleine largeur en dessous), button_label (texte du bouton, 60 car. max ; vide = texte par defaut du type de bloc), quiz_id (bloc quiz), calendar_event_id (bloc calendrier), lab_group_id (bloc Lab), is_active (afficher/masquer sans supprimer). Le type (kind) d'un bloc ne change pas.",
     inputSchema: {
         type: 'object' as const,
         properties: {
@@ -18,6 +18,8 @@ export const updateLinkInBioBlockTool = {
             block_id: { type: 'number', minimum: 1 },
             title: { type: 'string', maxLength: 200 },
             subtitle: { type: 'string', maxLength: 300 },
+            layout: { type: 'string', enum: ['classic', 'image', 'button'] },
+            button_label: { type: 'string', maxLength: 60 },
             url: { type: 'string' },
             image_url: { type: 'string' },
             quiz_id: { type: 'number', minimum: 1 },
@@ -33,6 +35,8 @@ export const updateLinkInBioBlockTool = {
         block_id: z.number().int().positive(),
         title: z.string().max(200).optional(),
         subtitle: z.string().max(300).optional(),
+        layout: z.enum(['classic', 'image', 'button']).optional(),
+        button_label: z.string().max(60).optional(),
         url: z.string().optional(),
         image_url: z.string().optional(),
         quiz_id: z.number().int().positive().optional(),

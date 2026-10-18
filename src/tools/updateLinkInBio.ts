@@ -8,12 +8,15 @@
 import { z } from 'zod';
 import { http, formatApiError } from '../http.js';
 
+/** Polices acceptees par le back (LinkInBioPage::FONTS). */
+const LIB_FONTS = ['fredoka', 'nunito', 'inter', 'dm-sans', 'poppins', 'montserrat', 'outfit', 'space-grotesk', 'playfair', 'lora', 'bricolage', 'bebas', 'caveat'] as const;
+
 const SOCIAL_KEYS = ['instagram', 'tiktok', 'youtube', 'x', 'linkedin', 'facebook', 'whatsapp', 'telegram'] as const;
 
 export const updateLinkInBioTool = {
     name: 'update_link_in_bio',
     description:
-        "Upsert (remplacement) de la page Link in Bio. Cree la page si absente. C'est un upsert COMPLET : tu dois TOUJOURS fournir slug, display_name, photo_layout et theme (fais get_link_in_bio d'abord pour recuperer les valeurs actuelles, puis renvoie-les avec tes modifs). Autres champs : bio, accent_color (#RRGGBB), desktop_layout (split/centered), avatar_url, banner_url, portrait_url, socials{instagram, tiktok, youtube, x, linkedin, facebook, whatsapp, telegram}. theme = light | dark | violet | yellow. photo_layout = avatar | banner | portrait. Les uploads d'images (avatar/banniere) se font via le front — ici on passe des URLs. Attention : changer le slug a un cooldown de 30 jours.",
+        "Upsert (remplacement) de la page Link in Bio. Cree la page si absente. C'est un upsert COMPLET : tu dois TOUJOURS fournir slug, display_name, photo_layout et theme (fais get_link_in_bio d'abord pour recuperer les valeurs actuelles, puis renvoie-les avec tes modifs). Autres champs : bio, accent_color (#RRGGBB), desktop_layout (split/centered), font_title / font_subtitle / font_body (polices de toute la page : titre = nom, sous-titres = titres des liens et boutons, texte = bio et descriptions ; null = police par defaut ; omis = inchange), avatar_url, banner_url, portrait_url, socials{instagram, tiktok, youtube, x, linkedin, facebook, whatsapp, telegram}. theme = light | dark | violet | yellow. photo_layout = avatar | banner | portrait. Les uploads d'images (avatar/banniere) se font via le front — ici on passe des URLs. Attention : changer le slug a un cooldown de 30 jours.",
     inputSchema: {
         type: 'object' as const,
         properties: {
@@ -25,6 +28,9 @@ export const updateLinkInBioTool = {
             accent_color: { type: 'string', pattern: '^#[0-9A-Fa-f]{6}$' },
             photo_layout: { type: 'string', enum: ['avatar', 'banner', 'portrait'] },
             desktop_layout: { type: 'string', enum: ['split', 'centered'] },
+            font_title: { type: ['string', 'null'], enum: [...LIB_FONTS, null] },
+            font_subtitle: { type: ['string', 'null'], enum: [...LIB_FONTS, null] },
+            font_body: { type: ['string', 'null'], enum: [...LIB_FONTS, null] },
             avatar_url: { type: 'string' },
             banner_url: { type: 'string' },
             portrait_url: { type: 'string' },
@@ -46,6 +52,9 @@ export const updateLinkInBioTool = {
         accent_color: z.string().regex(/^#[0-9A-Fa-f]{6}$/).optional(),
         photo_layout: z.enum(['avatar', 'banner', 'portrait']),
         desktop_layout: z.enum(['split', 'centered']).optional(),
+        font_title: z.enum(LIB_FONTS).nullable().optional(),
+        font_subtitle: z.enum(LIB_FONTS).nullable().optional(),
+        font_body: z.enum(LIB_FONTS).nullable().optional(),
         avatar_url: z.string().optional(),
         banner_url: z.string().optional(),
         portrait_url: z.string().optional(),
