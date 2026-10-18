@@ -27,7 +27,7 @@ export const createLinkInBioBlockTool = {
         "- kind=lab : autre Lab de l'owner (lab_group_id requis)\n" +
         "- kind=quiz : quiz du Lab (quiz_id requis). Le bloc reste masque sur la page publique tant que le quiz n'est pas publie et le plug-in Quiz active.\n" +
         "- kind=calendar : calendrier du Lab (calendar_event_id requis, ids via get_link_in_bio_catalog ou list_calendars). La reservation s'ouvre en fenetre sur la page publique. Masque si le calendrier est inactif ; un calendrier payant doit etre vendu dans une boutique Stripe active.\n" +
-        "Les ids se trouvent via get_link_in_bio_catalog. Champs optionnels : subtitle, image_url, layout (forme du bloc : classic = petite image + bouton a droite, par defaut ; image = texte et bouton a contour a gauche, grande image a droite ; button = image + titre en haut, gros bouton pleine largeur en dessous), button_label (texte du bouton, 60 car. max ; vide = texte par defaut du type de bloc). Position en fin de liste (utiliser reorder pour changer).",
+        "Les ids se trouvent via get_link_in_bio_catalog. Champs optionnels : subtitle, image_url, layout (forme du bloc : classic = petite image + bouton a droite, par defaut ; image = texte et bouton a contour a gauche, grande image a droite ; image_left = pareil avec la grande image a gauche ; button = image + titre en haut, gros bouton pleine largeur en dessous, image a gauche ; button_right = pareil, image a droite ; button_cover = image en fond sur toute la largeur, titre ecrit dessus, bouton en dessous), button_label (texte du bouton, 60 car. max ; vide = texte par defaut du type de bloc). Position en fin de liste (utiliser reorder pour changer).",
     inputSchema: {
         type: 'object' as const,
         properties: {
@@ -35,7 +35,7 @@ export const createLinkInBioBlockTool = {
             kind: { type: 'string', enum: [...KINDS] },
             title: { type: 'string', maxLength: 200 },
             subtitle: { type: 'string', maxLength: 300 },
-            layout: { type: 'string', enum: ['classic', 'image', 'button'] },
+            layout: { type: 'string', enum: ['classic', 'image', 'image_left', 'button', 'button_right', 'button_cover'] },
             button_label: { type: 'string', maxLength: 60 },
             url: { type: 'string', description: 'kind=external : URL du lien' },
             image_url: { type: 'string' },
@@ -53,7 +53,7 @@ export const createLinkInBioBlockTool = {
         kind: z.enum(KINDS),
         title: z.string().max(200),
         subtitle: z.string().max(300).optional(),
-        layout: z.enum(['classic', 'image', 'button']).optional(),
+        layout: z.enum(['classic', 'image', 'image_left', 'button', 'button_right', 'button_cover']).optional(),
         button_label: z.string().max(60).optional(),
         url: z.string().optional(),
         image_url: z.string().optional(),
