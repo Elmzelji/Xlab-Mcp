@@ -203,6 +203,14 @@ import { rejectAssistantActionTool } from './tools/rejectAssistantAction.js';
 import { correctAssistantActionTool } from './tools/correctAssistantAction.js';
 import { requestAssistantPostDraftTool } from './tools/requestAssistantPostDraft.js';
 import { getAssistantSummaryTool } from './tools/getAssistantSummary.js';
+import { listPartnerAgentsTool } from './tools/listPartnerAgents.js';
+import { getPartnerAgentTool } from './tools/getPartnerAgent.js';
+import { createPartnerAgentTool } from './tools/createPartnerAgent.js';
+import { updatePartnerAgentTool } from './tools/updatePartnerAgent.js';
+import { setPartnerAgentPublishedTool } from './tools/setPartnerAgentPublished.js';
+import { deletePartnerAgentTool } from './tools/deletePartnerAgent.js';
+import { checkPartnerAgentLinksTool } from './tools/checkPartnerAgentLinks.js';
+import { getPartnerAgentStatsTool } from './tools/getPartnerAgentStats.js';
 
 const tools = [
     listLabsTool,
@@ -402,6 +410,14 @@ const tools = [
     correctAssistantActionTool,
     requestAssistantPostDraftTool,
     getAssistantSummaryTool,
+    listPartnerAgentsTool,
+    getPartnerAgentTool,
+    createPartnerAgentTool,
+    updatePartnerAgentTool,
+    setPartnerAgentPublishedTool,
+    deletePartnerAgentTool,
+    checkPartnerAgentLinksTool,
+    getPartnerAgentStatsTool,
 ];
 
 const server = new Server(
