@@ -17,4 +17,7 @@ export const config = {
     apiBaseUrl: process.env.XLAB_API_URL || 'https://v1.connectxlab.io/api/v1',
     mcpToken: requireEnv('XLAB_MCP_TOKEN'),
     timeoutMs: parseInt(process.env.XLAB_TIMEOUT_MS || '15000', 10),
+    // compact (defaut) : 3 tools search_tools / describe_tool / execute ;
+    // full : les ~190 tools exposes directement (descriptions courtes).
+    mode: process.env.XLAB_MCP_MODE === 'full' ? 'full' as const : 'compact' as const,
 };

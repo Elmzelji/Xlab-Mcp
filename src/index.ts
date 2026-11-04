@@ -19,6 +19,8 @@ import {
     CallToolRequestSchema,
     ListToolsRequestSchema,
 } from '@modelcontextprotocol/sdk/types.js';
+import { config } from './config.js';
+import { COMPACT_INSTRUCTIONS, SERVER_INSTRUCTIONS, compactTools, lightSchema, runTool, shortDescription, type Tool } from './compact.js';
 import { listLabsTool } from './tools/listLabs.js';
 import { listMembersTool } from './tools/listMembers.js';
 import { listPostsTool } from './tools/listPosts.js';
@@ -420,33 +422,45 @@ const tools = [
     getPartnerAgentStatsTool,
 ];
 
+const catalog = tools as unknown as Tool[];
+const [searchTool, describeTool, executeTool] = compactTools(catalog);
+const compact = config.mode === 'compact';
+
 const server = new Server(
-    { name: 'connectxlab', version: '0.1.0' },
-    { capabilities: { tools: {} } },
+    { name: 'connectxlab', version: '0.4.0' },
+    {
+        capabilities: { tools: {} },
+        instructions: SERVER_INSTRUCTIONS + (compact ? COMPACT_INSTRUCTIONS : ''),
+    },
 );
 
+// Mode compact : 3 tools. Mode complet : tous les tools (descriptions courtes) + describe_tool.
+const exposed: Tool[] = compact ? [searchTool, describeTool, executeTool] : [...catalog, describeTool];
+
 server.setRequestHandler(ListToolsRequestSchema, async () => ({
-    tools: tools.map(t => ({
-        name: t.name,
-        description: t.description,
-        inputSchema: t.inputSchema,
-    })),
+    tools: exposed.map(t => compact || t === describeTool
+        ? { name: t.name, description: t.description, inputSchema: t.inputSchema }
+        : { name: t.name, description: shortDescription(t), inputSchema: lightSchema(t) }),
 }));
 
 server.setRequestHandler(CallToolRequestSchema, async (request) => {
     const { name, arguments: args } = request.params;
-    const tool = tools.find(t => t.name === name);
+    const tool = exposed.find(t => t.name === name);
     if (!tool) {
         return {
             isError: true,
             content: [{ type: 'text' as const, text: `Tool inconnu : ${name}` }],
         };
     }
-    return await tool.handler(args ?? {});
+    // Les tools du mode compact gerent eux-memes l'appel ; les autres passent par runTool.
+    if (tool === searchTool || tool === describeTool || tool === executeTool) {
+        return await tool.handler(args ?? {});
+    }
+    return await runTool(tool, args ?? {});
 });
 
 const transport = new StdioServerTransport();
 await server.connect(transport);
 
 // Log stderr pour debug (Claude Desktop l'affiche dans les logs).
-console.error(`[connectxlab-mcp] ready — ${tools.length} tools : ${tools.map(t => t.name).join(', ')}`);
+console.error(`[connectxlab-mcp] ready — mode ${config.mode}, ${catalog.length} actions, ${exposed.length} tools exposes`);
