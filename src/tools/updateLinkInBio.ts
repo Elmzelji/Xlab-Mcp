@@ -20,7 +20,10 @@ export const updateLinkInBioTool = {
     inputSchema: {
         type: 'object' as const,
         properties: {
+            page: { type: 'number', minimum: 1, description: 'Lab officiel : id de la page visee (liste dans get_link_in_bio). Defaut : la premiere.' },
+            create: { type: 'boolean', description: 'Lab officiel : true pour creer une nouvelle page (avec un slug libre)' },
             lab: { type: 'string' },
+            links_title: { type: ['string', 'null'], maxLength: 60, description: 'Titre au-dessus des liens (null = "Mes liens")' },
             slug: { type: 'string', minLength: 3, maxLength: 60, description: 'minuscule, ^[a-z][a-z0-9_-]{2,59}$' },
             display_name: { type: 'string', maxLength: 100 },
             bio: { type: 'string', maxLength: 500 },
@@ -44,10 +47,13 @@ export const updateLinkInBioTool = {
         additionalProperties: false,
     },
     zodSchema: z.object({
+        page: z.number().int().positive().optional(),
+        create: z.boolean().optional(),
         lab: z.string(),
         slug: z.string().min(3).max(60),
         display_name: z.string().max(100),
         bio: z.string().max(500).optional(),
+        links_title: z.string().max(60).nullable().optional(),
         theme: z.enum(['light', 'dark', 'violet', 'yellow']),
         accent_color: z.string().regex(/^#[0-9A-Fa-f]{6}$/).optional(),
         photo_layout: z.enum(['avatar', 'banner', 'portrait']),

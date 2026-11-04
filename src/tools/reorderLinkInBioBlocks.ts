@@ -14,6 +14,7 @@ export const reorderLinkInBioBlocksTool = {
         type: 'object' as const,
         properties: {
             lab: { type: 'string' },
+            page: { type: 'number', minimum: 1, description: 'Lab officiel : id de la page visee (liste dans get_link_in_bio). Defaut : la premiere.' },
             block_ids: {
                 type: 'array',
                 items: { type: 'number', minimum: 1 },
@@ -26,13 +27,14 @@ export const reorderLinkInBioBlocksTool = {
     zodSchema: z.object({
         lab: z.string(),
         block_ids: z.array(z.number().int().positive()).min(1),
+        page: z.number().int().positive().optional(),
     }),
     async handler(args: Record<string, unknown>) {
         const parsed = this.zodSchema.parse(args);
         try {
             const { data } = await http.put(
                 `/mcp/labs/${encodeURIComponent(parsed.lab)}/link-in-bio/blocks/reorder`,
-                { block_ids: parsed.block_ids }
+                { block_ids: parsed.block_ids, ...(parsed.page ? { page: parsed.page } : {}) }
             );
             return { content: [{ type: 'text' as const, text: JSON.stringify(data, null, 2) }] };
         } catch (err) {

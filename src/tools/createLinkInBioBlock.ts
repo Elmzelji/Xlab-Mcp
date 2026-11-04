@@ -31,6 +31,7 @@ export const createLinkInBioBlockTool = {
     inputSchema: {
         type: 'object' as const,
         properties: {
+            page: { type: 'number', minimum: 1, description: 'Lab officiel : id de la page visee (liste dans get_link_in_bio). Defaut : la premiere.' },
             lab: { type: 'string' },
             kind: { type: 'string', enum: [...KINDS] },
             title: { type: 'string', maxLength: 200 },
@@ -49,6 +50,7 @@ export const createLinkInBioBlockTool = {
         additionalProperties: false,
     },
     zodSchema: z.object({
+        page: z.number().int().positive().optional(),
         lab: z.string(),
         kind: z.enum(KINDS),
         title: z.string().max(200),
