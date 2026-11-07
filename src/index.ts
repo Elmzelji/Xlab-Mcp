@@ -434,7 +434,7 @@ const [searchTool, describeTool, executeTool] = compactTools(catalog);
 const compact = config.mode === 'compact';
 
 const server = new Server(
-    { name: 'connectxlab', version: '0.4.1' },
+    { name: 'connectxlab', version: '0.4.2' },
     {
         capabilities: { tools: {} },
         instructions: SERVER_INSTRUCTIONS + (compact ? COMPACT_INSTRUCTIONS : ''),
