@@ -207,6 +207,7 @@ const VERB_HINTS: [RegExp, string][] = [
     [/^revenu|^gain|^argent/, 'earnings'], [/^vente/, 'sales'], [/^membre/, 'member'], [/^cours|^formation|^classe/, 'class'],
     [/^evenement/, 'event'], [/^boutique|^produit/, 'shop'], [/^tunnel/, 'funnel'], [/^lien/, 'link'],
     [/^attente/, 'pending'], [/^abonne/, 'subscription'], [/^prix|^tarif/, 'price'],
+    [/^offre|^upsell|^seance/, 'upsell'],
 ];
 
 /** Mots trop courants pour departager les actions. */

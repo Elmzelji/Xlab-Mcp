@@ -114,6 +114,9 @@ import { deleteFunnelTool } from './tools/deleteFunnel.js';
 import { setFunnelItemTool } from './tools/setFunnelItem.js';
 import { deleteFunnelItemTool } from './tools/deleteFunnelItem.js';
 import { getFunnelStatsTool } from './tools/getFunnelStats.js';
+import { getUpsellOfferTool } from './tools/getUpsellOffer.js';
+import { updateUpsellOfferTool } from './tools/updateUpsellOffer.js';
+import { getUpsellStatsTool } from './tools/getUpsellStats.js';
 import { getProductAffiliationConfigTool } from './tools/getProductAffiliationConfig.js';
 import { updateProductAffiliationConfigTool } from './tools/updateProductAffiliationConfig.js';
 import { listProductAffiliatesTool } from './tools/listProductAffiliates.js';
@@ -313,6 +316,10 @@ const tools = [
     setFunnelItemTool,
     deleteFunnelItemTool,
     getFunnelStatsTool,
+    // Offre (upsell) sous les videos d'une formation / les seances d'une programmation
+    getUpsellOfferTool,
+    updateUpsellOfferTool,
+    getUpsellStatsTool,
     // Affiliation (par-produit + lab-level)
     getProductAffiliationConfigTool,
     updateProductAffiliationConfigTool,
