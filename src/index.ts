@@ -130,6 +130,7 @@ import { addSubscriptionPriceTool } from './tools/addSubscriptionPrice.js';
 import { setCurrentSubscriptionPriceTool } from './tools/setCurrentSubscriptionPrice.js';
 import { deleteSubscriptionPriceTool } from './tools/deleteSubscriptionPrice.js';
 import { updateTrialSettingsTool } from './tools/updateTrialSettings.js';
+import { createSubscriptionTierTool, updateSubscriptionTierTool, archiveSubscriptionTierTool } from './tools/subscriptionTiers.js';
 import { listPixelRequestsTool } from './tools/listPixelRequests.js';
 import { managePixelRequestTool } from './tools/managePixelRequest.js';
 import { getNewsletterEditionTool } from './tools/getNewsletterEdition.js';
@@ -335,6 +336,9 @@ const tools = [
     setCurrentSubscriptionPriceTool,
     deleteSubscriptionPriceTool,
     updateTrialSettingsTool,
+    createSubscriptionTierTool,
+    updateSubscriptionTierTool,
+    archiveSubscriptionTierTool,
     listPixelRequestsTool,
     managePixelRequestTool,
     // Newsletter (complements : editions CRUD, abonnes, config)
