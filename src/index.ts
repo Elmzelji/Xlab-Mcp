@@ -47,6 +47,8 @@ import { listAdminsTool } from './tools/listAdmins.js';
 import { getLabSettingsTool } from './tools/getLabSettings.js';
 import { updateLabSettingsTool } from './tools/updateLabSettings.js';
 import { getStatsTool } from './tools/getStats.js';
+import { getVideoUsageTool } from './tools/getVideoUsage.js';
+import { getEmailUsageTool } from './tools/getEmailUsage.js';
 import { updatePostTool } from './tools/updatePost.js';
 import { deletePostTool } from './tools/deletePost.js';
 import { updateClassTool } from './tools/updateClass.js';
@@ -245,6 +247,8 @@ const tools = [
     getLabSettingsTool,
     updateLabSettingsTool,
     getStatsTool,
+    getVideoUsageTool,
+    getEmailUsageTool,
     updatePostTool,
     deletePostTool,
     updateClassTool,
@@ -438,7 +442,7 @@ const [searchTool, describeTool, executeTool] = compactTools(catalog);
 const compact = config.mode === 'compact';
 
 const server = new Server(
-    { name: 'connectxlab', version: '0.4.3' },
+    { name: 'connectxlab', version: '0.4.4' },
     {
         capabilities: { tools: {} },
         instructions: SERVER_INSTRUCTIONS + (compact ? COMPACT_INSTRUCTIONS : ''),
